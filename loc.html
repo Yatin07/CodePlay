@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Emergency Contacts & WhatsApp Location Sharing</title>
+  <!-- Bootstrap CSS for styling -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f7f7f7;
+      font-family: Arial, sans-serif;
+      padding-top: 30px;
+    }
+    .container {
+      max-width: 600px;
+    }
+    .card {
+      margin-bottom: 20px;
+    }
+    .btn-block {
+      margin-top: 10px;
+    }
+    body {
+  background-color: #f7f7f7;
+  font-family: Arial, sans-serif;
+  padding-top: 30px;
+  margin: 0;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.card-header {
+  background-color: #007bff;
+  color: #fff;
+  padding: 15px;
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+input[type="tel"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: #28a745;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.btn:hover {
+  background-color: #218838;
+}
+
+.btn-block {
+  margin-top: 10px;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Contact Setup Card -->
+    <div class="card">
+      <div class="card-header">
+        <h3>Set Emergency Contacts</h3>
+      </div>
+      <div class="card-body">
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="familyContact">Family Contact (with country code):</label>
+            <input type="tel" class="form-control" id="familyContact" placeholder="+1234567890" required>
+          </div>
+          <div class="form-group">
+            <label for="hospitalContact">Hospital Contact (with country code):</label>
+            <input type="tel" class="form-control" id="hospitalContact" placeholder="+1234567890" required>
+          </div>
+          <button type="button" class="btn btn-primary" onclick="saveContacts()">Save Contacts</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Display Saved Contacts Card -->
+    <div class="card" id="savedContactsCard" style="display:none;">
+      <div class="card-header">
+        <h4>Saved Contacts</h4>
+      </div>
+      <div class="card-body">
+        <p><strong>Family Contact:</strong> <span id="displayFamily"></span></p>
+        <p><strong>Hospital Contact:</strong> <span id="displayHospital"></span></p>
+      </div>
+    </div>
+
+    <!-- Emergency Actions Card -->
+    <div class="card">
+      <div class="card-header">
+        <h3>Emergency Actions</h3>
+      </div>
+      <div class="card-body">
+        <p>Click the buttons below for emergency actions. The saved contacts will receive your location via WhatsApp.</p>
+        <button id="familyEmergencyBtn" class="btn btn-danger btn-block" onclick="sendFamilyEmergency()" disabled>
+          Family Emergency (Send Location via WhatsApp)
+        </button>
+        <button id="hospitalEmergencyBtn" class="btn btn-warning btn-block" onclick="sendHospitalEmergency()" disabled>
+          Hospital Emergency (Send Location via WhatsApp)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // On page load, retrieve and display saved contacts
+    document.addEventListener("DOMContentLoaded", function() {
+      const savedFamily = localStorage.getItem("familyContact");
+      const savedHospital = localStorage.getItem("hospitalContact");
+      if (savedFamily && savedHospital) {
+        document.getElementById("familyContact").value = savedFamily;
+        document.getElementById("hospitalContact").value = savedHospital;
+        displaySavedContacts();
+        enableEmergencyButtons();
+      }
+    });
+
+    function saveContacts() {
+      const family = document.getElementById("familyContact").value.trim();
+      const hospital = document.getElementById("hospitalContact").value.trim();
+      if (!family || !hospital) {
+        alert("Please fill in both contacts.");
+        return;
+      }
+      localStorage.setItem("familyContact", family);
+      localStorage.setItem("hospitalContact", hospital);
+      alert("Contacts saved successfully!");
+      displaySavedContacts();
+      enableEmergencyButtons();
+    }
+
+    function displaySavedContacts() {
+      const family = localStorage.getItem("familyContact");
+      const hospital = localStorage.getItem("hospitalContact");
+      if (family && hospital) {
+        document.getElementById("displayFamily").textContent = family;
+        document.getElementById("displayHospital").textContent = hospital;
+        document.getElementById("savedContactsCard").style.display = "block";
+      }
+    }
+
+    function enableEmergencyButtons() {
+      document.getElementById("familyEmergencyBtn").disabled = false;
+      document.getElementById("hospitalEmergencyBtn").disabled = false;
+    }
+
+    // Family Emergency: Get current location and open WhatsApp chat with prefilled message for family contact
+    function sendFamilyEmergency() {
+      const family = localStorage.getItem("familyContact");
+      if (!family) {
+        alert("Family contact not set!");
+        return;
+      }
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            const locationUrl = `https://maps.google.com/?q=${lat},${lon}`;
+            const message = `🚨 Emergency! Please check my location: ${locationUrl}`;
+            const waUrl = `https://api.whatsapp.com/send?phone=${encodeURIComponent(family)}&text=${encodeURIComponent(message)}`;
+            window.open(waUrl, "_blank");
+          },
+          (error) => {
+            alert("Error obtaining location: " + error.message);
+          }
+        );
+      } else {
+        alert("Geolocation is not supported by your browser.");
+      }
+    }
+
+    // Hospital Emergency: Get current location and open WhatsApp chat with prefilled message for hospital contact
+    function sendHospitalEmergency() {
+      const hospital = localStorage.getItem("hospitalContact");
+      if (!hospital) {
+        alert("Hospital contact not set!");
+        return;
+      }
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            const locationUrl = `https://maps.google.com/?q=${lat},${lon}`;
+            const message = `🚨 Emergency! Please check my location: ${locationUrl}`;
+            const waUrl = `https://api.whatsapp.com/send?phone=${encodeURIComponent(hospital)}&text=${encodeURIComponent(message)}`;
+            window.open(waUrl, "_blank");
+          },
+          (error) => {
+            alert("Error obtaining location: " + error.message);
+          }
+        );
+      } else {
+        alert("Geolocation is not supported by your browser.");
+      }
+    }
+  </script>
+</body>
+</html>

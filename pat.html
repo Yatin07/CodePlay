@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Patient Video Consultation</title>
+  <!-- Firebase -->
+  <script type="module" src="https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js"></script>
+  <script type="module" src="https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js"></script>
+  <!-- PeerJS -->
+  <script src="https://unpkg.com/peerjs@1.3.2/dist/peerjs.min.js"></script>
+  <style>
+    body { text-align: center; font-family: Arial, sans-serif; }
+    video { width: 45%; margin: 10px; border: 2px solid #2c3e50; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h2>Patient Video Consultation</h2>
+  <video id="localVideo" autoplay muted></video>
+  <video id="remoteVideo" autoplay></video>
+  <div id="doctorInfo">Enter the doctor's name to call:</div>
+  <input type="text" id="doctorNameInput" placeholder="Doctor's name">
+  <button id="callButton">Call Doctor</button>
+  
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyARed2AFNECE8c9eaGdCK2UPV0o7IM9qcY",
+      authDomain: "done-001.firebaseapp.com",
+      projectId: "done-001",
+      storageBucket: "done-001.appspot.com",
+      messagingSenderId: "182309859819",
+      appId: "1:182309859819:web:cc5d5b8d04ef30718b69ae"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    // Set up PeerJS for the patient
+    const peer = new Peer();
+    const localVideo = document.getElementById("localVideo");
+    const remoteVideo = document.getElementById("remoteVideo");
+
+    navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+      .then(stream => {
+          localVideo.srcObject = stream;
+          // Answer incoming calls if any (optional)
+          peer.on('call', call => {
+              call.answer(stream);
+              call.on('stream', remoteStream => {
+                  remoteVideo.srcObject = remoteStream;
+              });
+          });
+      })
+      .catch(err => {
+          console.error("Error accessing media devices.", err);
+      });
+
+    // When the patient clicks the "Call Doctor" button:
+    document.getElementById("callButton").addEventListener("click", () => {
+      const doctorName = document.getElementById("doctorNameInput").value;
+      if (!doctorName) {
+        alert("Please enter the doctor's name.");
+        return;
+      }
+      
+      // Retrieve the doctor's Peer ID from Firebase
+      onValue(ref(db, "Doctors/" + doctorName + "/peerId"), (snapshot) => {
+          const doctorPeerId = snapshot.val();
+          if (doctorPeerId) {
+              // Initiate call to the doctor's Peer ID
+              const call = peer.call(doctorPeerId, localVideo.srcObject);
+              call.on('stream', remoteStream => {
+                  remoteVideo.srcObject = remoteStream;
+              });
+          } else {
+              alert("Doctor's Peer ID not found. Ensure the doctor is online.");
+          }
+      }, { onlyOnce: true });
+    });
+  </script>
+</body>
+</html>

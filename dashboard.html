@@ -1,0 +1,332 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   eCareMD Dashboard
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Inter', sans-serif;
+        }
+  </style>
+ </head>
+ <body class="bg-gray-100">
+  <div class="flex">
+   <!-- Sidebar -->
+   <div class="w-64 bg-white h-screen shadow-md">
+    <div class="p-6">
+     <div class="flex items-center">
+      <img alt="eCareMD Logo" class="w-10 h-10" height="40" src="https://storage.googleapis.com/a1aa/image/upuPfy0QisyDfgKmbZn0M-gHaVjJL-9me6mREsBGi4E.jpg" width="40"/>
+      <span class="ml-3 text-xl font-bold text-teal-600">
+       eCare
+       <span class="text-green-500">
+        MD
+       </span>
+      </span>
+     </div>
+     <nav class="mt-10">
+      <a class="flex items-center p-2 text-gray-700 bg-gray-200 rounded-md" href="#">
+       <i class="fas fa-tachometer-alt">
+       </i>
+       <span class="ml-3">
+        Dashboard
+       </span>
+      </a>
+      <a class="flex items-center p-2 mt-2 text-gray-700 rounded-md hover:bg-gray-200" href="#">
+       <i class="fas fa-user-injured">
+       </i>
+       <span class="ml-3">
+        Patients
+       </span>
+      </a>
+      <a class="flex items-center p-2 mt-2 text-gray-700 rounded-md hover:bg-gray-200" href="#">
+       <i class="fas fa-file-invoice-dollar">
+       </i>
+       <span class="ml-3">
+        Billing &amp; Claims
+       </span>
+      </a>
+      <a class="flex items-center p-2 mt-2 text-gray-700 rounded-md hover:bg-gray-200" href="#">
+       <i class="fas fa-chart-line">
+       </i>
+       <span class="ml-3">
+        Analytics
+       </span>
+      </a>
+      <a class="flex items-center p-2 mt-2 text-gray-700 rounded-md hover:bg-gray-200" href="#">
+       <i class="fas fa-calendar-alt">
+       </i>
+       <span class="ml-3">
+        Call Scheduler
+       </span>
+      </a>
+      <a class="flex items-center p-2 mt-2 text-gray-700 rounded-md hover:bg-gray-200" href="#">
+       <i class="fas fa-envelope">
+       </i>
+       <span class="ml-3">
+        Message
+       </span>
+       <span class="ml-auto bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
+        8
+       </span>
+      </a>
+      <a class="flex items-center p-2 mt-2 text-gray-700 rounded-md hover:bg-gray-200" href="#">
+       <i class="fas fa-bell">
+       </i>
+       <span class="ml-3">
+        Alerts
+       </span>
+       <span class="ml-auto bg-yellow-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
+        5
+       </span>
+      </a>
+      <a class="flex items-center p-2 mt-2 text-gray-700 rounded-md hover:bg-gray-200" href="#">
+       <i class="fas fa-tasks">
+       </i>
+       <span class="ml-3">
+        Task
+       </span>
+      </a>
+      <a class="flex items-center p-2 mt-2 text-gray-700 rounded-md hover:bg-gray-200" href="#">
+       <i class="fas fa-graduation-cap">
+       </i>
+       <span class="ml-3">
+        Education
+       </span>
+      </a>
+      <a class="flex items-center p-2 mt-2 text-gray-700 rounded-md hover:bg-gray-200" href="#">
+       <i class="fas fa-book">
+       </i>
+       <span class="ml-3">
+        Library
+       </span>
+      </a>
+      <a class="flex items-center p-2 mt-2 text-gray-700 rounded-md hover:bg-gray-200" href="#">
+       <i class="fas fa-cog">
+       </i>
+       <span class="ml-3">
+        Settings
+       </span>
+      </a>
+      <a class="flex items-center p-2 mt-2 text-gray-700 rounded-md hover:bg-gray-200" href="#">
+       <i class="fas fa-sign-out-alt">
+       </i>
+       <span class="ml-3">
+        Logout
+       </span>
+      </a>
+     </nav>
+     <div class="absolute bottom-0 p-6">
+      <div class="flex items-center">
+       <img alt="User Profile" class="w-10 h-10 rounded-full" height="40" src="https://storage.googleapis.com/a1aa/image/-3ajBGaxCHKpVXwbtknZf7zeBkgndKfRLGIDi4Tnd_o.jpg" width="40"/>
+       <div class="ml-3">
+        <p class="text-sm font-medium text-gray-700">
+         John Doe
+        </p>
+        <p class="text-xs text-gray-500">
+         Provider
+        </p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <!-- Main Content -->
+   <div class="flex-1 p-6">
+    <div class="flex justify-between items-center">
+     <div>
+      <h1 class="text-2xl font-semibold text-gray-700">
+       Patients
+      </h1>
+      <p class="text-sm text-gray-500">
+       Home &gt; Analytics &gt; Patients &gt; Vitals
+      </p>
+     </div>
+     <div class="flex items-center space-x-4">
+      <input class="px-4 py-2 border rounded-md" placeholder="Type here to search" type="text"/>
+      <div class="relative">
+       <i class="fas fa-bell text-gray-500">
+       </i>
+       <span class="absolute top-0 right-0 bg-red-500 text-white text-xs font-semibold px-1.5 py-0.5 rounded-full">
+        1
+       </span>
+      </div>
+      <div class="relative">
+       <i class="fas fa-envelope text-gray-500">
+       </i>
+       <span class="absolute top-0 right-0 bg-red-500 text-white text-xs font-semibold px-1.5 py-0.5 rounded-full">
+        3
+       </span>
+      </div>
+      <div class="flex items-center space-x-2">
+       <i class="fas fa-clock text-gray-500">
+       </i>
+       <span class="text-sm text-gray-500">
+        00:04:30
+       </span>
+       <button class="px-4 py-2 bg-teal-500 text-white rounded-md">
+        Log Time
+       </button>
+      </div>
+     </div>
+    </div>
+    <div class="mt-6 bg-white p-6 rounded-md shadow-md">
+     <div class="flex items-center space-x-4">
+      <img alt="Patient Profile" class="w-16 h-16 rounded-full" height="60" src="https://storage.googleapis.com/a1aa/image/YTFqmZNbCN_5MjSRttcKqOXchD4Du1EWvf0URPjK33Y.jpg" width="60"/>
+      <div>
+       <p class="text-lg font-semibold text-gray-700">
+        Alex Smith
+       </p>
+       <p class="text-sm text-gray-500">
+        P1234 | Male | 76 Years
+       </p>
+       <p class="text-sm text-gray-500">
+        CPM - Enrolled 20 Days
+       </p>
+      </div>
+      <div class="ml-auto">
+       <span class="px-3 py-1 bg-green-100 text-green-600 text-sm font-semibold rounded-full">
+        Active
+       </span>
+      </div>
+     </div>
+     <div class="mt-4 flex space-x-4">
+      <div class="flex-1">
+       <p class="text-sm text-gray-500">
+        Language
+       </p>
+       <p class="text-sm text-gray-700">
+        English
+       </p>
+      </div>
+      <div class="flex-1">
+       <p class="text-sm text-gray-500">
+        Conditions
+       </p>
+       <p class="text-sm text-gray-700">
+        1. Diabetes
+       </p>
+       <p class="text-sm text-gray-700">
+        2. Hypertension
+       </p>
+      </div>
+      <div class="flex-1">
+       <p class="text-sm text-gray-500">
+        Care Team
+       </p>
+       <p class="text-sm text-gray-700">
+        1. Adolph Mcalister (CM)
+       </p>
+       <p class="text-sm text-gray-700">
+        2. Stephen Warren (Physician)
+       </p>
+      </div>
+      <div class="flex-1">
+       <p class="text-sm text-gray-500">
+        Log Time
+       </p>
+       <p class="text-sm text-gray-700">
+        Goal: 20 Minutes
+       </p>
+       <p class="text-sm text-gray-700">
+        Logged This Month: 10.15 Mins
+       </p>
+      </div>
+     </div>
+     <div class="mt-6 flex space-x-4">
+      <button class="px-4 py-2 bg-teal-500 text-white rounded-md">
+       View Profile
+      </button>
+     </div>
+    </div>
+    <div class="mt-6 bg-white p-6 rounded-md shadow-md">
+     <div class="flex space-x-4">
+      <div class="flex-1 p-4 bg-yellow-100 rounded-md">
+       <p class="text-2xl font-semibold text-yellow-600">
+        120/80 mmHg
+       </p>
+       <p class="text-sm text-gray-500">
+        Blood Pressure
+       </p>
+       <p class="text-xs text-gray-500">
+        5% higher
+       </p>
+       <p class="text-xs text-gray-500">
+        08-02-2022, 02:30 PM
+       </p>
+      </div>
+      <div class="flex-1 p-4 bg-green-100 rounded-md">
+       <p class="text-2xl font-semibold text-green-600">
+        97.22 mmol/L
+       </p>
+       <p class="text-sm text-gray-500">
+        Blood Glucose
+       </p>
+       <p class="text-xs text-gray-500">
+        2% lower
+       </p>
+       <p class="text-xs text-gray-500">
+        08-02-2022, 02:30 PM
+       </p>
+      </div>
+      <div class="flex-1 p-4 bg-blue-100 rounded-md">
+       <p class="text-2xl font-semibold text-blue-600">
+        99.4 °F
+       </p>
+       <p class="text-sm text-gray-500">
+        Body Temperature
+       </p>
+       <p class="text-xs text-gray-500">
+        5% higher
+       </p>
+       <p class="text-xs text-gray-500">
+        08-02-2022, 02:30 PM
+       </p>
+      </div>
+      <div class="flex-1 p-4 bg-indigo-100 rounded-md">
+       <p class="text-2xl font-semibold text-indigo-600">
+        72 bpm
+       </p>
+       <p class="text-sm text-gray-500">
+        Heart Rate
+       </p>
+       <p class="text-xs text-gray-500">
+        5% higher
+       </p>
+       <p class="text-xs text-gray-500">
+        08-02-2022, 02:30 PM
+       </p>
+      </div>
+      <div class="flex-1 p-4 bg-purple-100 rounded-md">
+       <p class="text-2xl font-semibold text-purple-600">
+        14 bpm
+       </p>
+       <p class="text-sm text-gray-500">
+        Respiration Rate
+       </p>
+       <p class="text-xs text-gray-500">
+        2% lower
+       </p>
+       <p class="text-xs text-gray-500">
+        08-02-2022, 02:30 PM
+       </p>
+      </div>
+     </div>
+    </div>
+    <div class="mt-6 bg-white p-6 rounded-md shadow-md">
+     <h2 class="text-lg font-semibold text-gray-700">
+      Statistics
+     </h2>
+     <div class="mt-4">
+      <img alt="Statistics Graph" class="w-full h-64 rounded-md" height="400" src="https://storage.googleapis.com/a1aa/image/AsyFlTxBj0058p9s7J822ANdPgGF88NQSbbKTd78HU4.jpg" width="800"/>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

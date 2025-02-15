@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Tracking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 28px;
+            background-color: black;
+            border-bottom-left-radius: 24px;
+            border-bottom-right-radius: 24px;
+        }
+        svg path#line {
+  fill: none;
+  stroke: #e00000;
+  stroke-width: 2;
+  stroke-linecap: butt;
+  stroke-linejoin: round;
+  stroke-miterlimit: 4;
+  stroke-dasharray:none;
+  stroke-opacity: 1;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: dash 4s linear infinite;
+}
+svg path#heart {
+  transform-origin: 50% 50%;
+  animation: blink 4s linear infinite;
+}
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 1;
+  }
+  80% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes blink {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  60% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  75% {
+    opacity: 1;
+    transform: scale(1.0);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  85% {
+    opacity: 1;
+    transform: scale(1.0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.0);
+  }
+}
+    </style>
+</head>
+<header class="bg-white shadow-md">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+     <div class="text-blue-600 text-2xl font-bold" >
+      HealthSphere
+      
+     </div>
+     <svg xmlns="http://www.w3.org/2000/svg" id="svg5" version="1.1" viewBox="0 0 502.98 108.61" style="height: 40px;padding-right:1000px">
+       <path id="heart" d="M213.35 29.43c19.41-15.19 33.68 10.86 37.73 18.82-.28-13.61 11.64-40.98 25.94-34.01 32.3 15.74-15.88 83.8-26.4 81.76-13.24-9-51.35-53.3-37.27-66.57Z" style="fill:#ff9999;stroke:#ff9999;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
+       <path  pathLength="1" id="line" d="M5.32 78.13c.96-.01 5-8.5 5.54-8.54.58-.05 6.1 8.51 7.1 8.51 3.66 0 9.29.06 10.71.05 2.53-.01 4.82-72.88 4.82-72.88l4.76 97.28 3.97-24.45 20.45-.22C64 77.86 77.1 63.66 78.36 63.8c1.31.15 6.68 14.08 7.94 14.07 2.3-.03 33.32.04 35.76.02.96 0 5-8.5 5.53-8.53.59-.05 6.1 8.51 7.1 8.5 3.66 0 9.3.07 10.72.06 2.53-.02 4.81-72.89 4.81-72.89l4.77 97.28 3.97-24.44s83.34-3.33 74.69 7.67c-8.65 11-45.3-42.94-31.65-53.58 25.6-19.96 49.96 36.94 40.26 36.5-12.2-.53 1.8-62.32 23.41-51.7 32.24 15.86-17.56 84.92-26.4 81.77-5.73-2.05-.68-21.68 31.4-26.58 26.65-6.42 29.5 2.35 52.62 7.11 2.53-.02 4.82-72.89 4.82-72.89l4.76 97.28 3.97-24.44 20.45-.22c1.31-.02 14.41-14.22 15.68-14.07 1.32.15 6.7 14.08 7.95 14.07 2.29-.03 33.32.04 35.76.02.95 0 5-8.5 5.53-8.54.58-.04 6.1 8.52 7.1 8.52 3.66 0 9.3.06 10.72.05 2.53-.02 4.81-72.89 4.81-72.89l4.77 97.28 3.97-24.44 20.45-.23c1.31-.01 14.4-14.22 15.68-14.07 1.32.16 6.69 14.09 7.94 14.07" />
+     </svg>
+     <nav class="space-x-8">
+      
+      <a class="bg-blue-600 text-white px-4 py-2 rounded" href="index.html">
+       Homepage
+      </a>
+      
+     </nav>
+     
+     
+    </div>
+   </header>
+<body class="min-h-screen bg-gray-50">
+    <!-- Hero Section -->
+    
+        <div class="container mx-auto px-4 py-16">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 text-gray-900 max-w-3xl">
+                Make health tracking easier with our user-friendly design
+            </h1>
+        </div>
+ 
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-12">
+        <div class="flex gap-16 items-start justify-center">
+            <!-- Left Side - Phone Mockup -->
+            <div class="w-[375px] flex-shrink-0">
+                <div class="bg-black rounded-[60px] p-4 aspect-[9/19] relative overflow-hidden shadow-2xl">
+                    <div class="phone-notch"></div>
+                    <div class="h-full bg-gray-900 rounded-[48px] overflow-hidden">
+                        <div class="p-4 flex items-center gap-2 bg-black text-white">
+                            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                            <span class="text-sm" id="activeFeatureTitle">Lab Results</span>
+                        </div>
+                        <div class="p-2">
+                            <img 
+                                id="featureImage"
+                                src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&q=80&w=1000" 
+                                alt="Feature"
+                                class="w-full aspect-square object-cover mb-4"
+                            />
+                            <div class="flex justify-between items-center text-white text-sm px-2">
+                                <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                                <span id="featureDescription">Complete Blood Count (CBC)</span>
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </div>
+                            <div class="bg-black text-white p-4 mt-4 rounded-lg">
+                                <p class="font-semibold" id="featureTitle">Blood Test Results</p>
+                                <div id="featureDetails">
+                                    <p class="text-gray-300">Red Blood Cells: 4.5-5.5 million/mcL</p>
+                                    <p class="text-gray-300">White Blood Cells: 4,500-11,000/mcL</p>
+                                    <p class="text-gray-300">Hemoglobin: 14-17 g/dL</p>
+                                    <p class="text-gray-300">Platelets: 150,000-450,000/mcL</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side - Features -->
+            <div class="grid gap-4 flex-1 max-w-xl" id="features">
+                <!-- Features will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Educational Resources Section -->
+    <section class="bg-white py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8">Educational Resources</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-xl p-6">
+                    <h3 class="text-xl font-semibold mb-4">Understanding Medical Imaging</h3>
+                    <p class="text-gray-600 mb-4">Learn about different types of medical imaging techniques and their applications in modern medicine.</p>
+                    <iframe
+                        class="w-full aspect-video rounded-lg mb-4"
+                        src="https://www.youtube.com/embed/7y1N6VHjxGU"
+                        title="Understanding Medical Imaging"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                    ></iframe>
+                    <img 
+                        src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=1000" 
+                        alt="Medical Imaging Equipment"
+                        class="w-full aspect-video object-cover rounded-lg"
+                    />
+                </div>
+                <div class="bg-gray-50 rounded-xl p-6">
+                    <h3 class="text-xl font-semibold mb-4">Patient Health Tracking</h3>
+                    <p class="text-gray-600 mb-4">Discover best practices for monitoring and managing your health data effectively.</p>
+                    <iframe
+                        class="w-full aspect-video rounded-lg mb-4"
+                        src="https://www.youtube.com/embed/fV-jzdrqHhE"
+                        title="Health Tracking Basics"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                    ></iframe>
+                    <img 
+                        src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=1000" 
+                        alt="Health Tracking"
+                        class="w-full aspect-video object-cover rounded-lg"
+                    />
+                </div>
+                <div class="bg-gray-50 rounded-xl p-6">
+                    <h3 class="text-xl font-semibold mb-4">Medical Data Analysis</h3>
+                    <p class="text-gray-600 mb-4">Expert insights on interpreting medical data and understanding health metrics.</p>
+                    <iframe
+                        class="w-full aspect-video rounded-lg mb-4"
+                        src="https://www.youtube.com/embed/YVHG5NvZUDg"
+                        title="Medical Data Analysis"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                    ></iframe>
+                    <img 
+                        src="https://images.unsplash.com/photo-1576671081837-49000212a370?auto=format&fit=crop&q=80&w=1000" 
+                        alt="Medical Data"
+                        class="w-full aspect-video object-cover rounded-lg"
+                    />
+                </div>
+            </div>
+
+            <!-- Additional Resources -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+                <div class="bg-gray-50 rounded-xl p-6">
+                    <h3 class="text-xl font-semibold mb-4">Preventive Healthcare</h3>
+                    <p class="text-gray-600 mb-4">Learn about preventive measures and maintaining good health.</p>
+                    <iframe
+                        class="w-full aspect-video rounded-lg mb-4"
+                        src="https://www.youtube.com/embed/B7wfp-Zq0LM"
+                        title="Preventive Healthcare"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                    ></iframe>
+                    <img 
+                        src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80&w=1000" 
+                        alt="Preventive Healthcare"
+                        class="w-full aspect-video object-cover rounded-lg"
+                    />
+                </div>
+                <div class="bg-gray-50 rounded-xl p-6" id="targetSection">
+                    <h3 class="text-xl font-semibold mb-4">Mental Health Awareness</h3>
+                    <p class="text-gray-600 mb-4">Understanding the importance of mental health and well-being.</p>
+                    <iframe
+                        class="w-full aspect-video rounded-lg mb-4"
+                        src="https://www.youtube.com/embed/1i9OktVsTWo"
+                        title="Mental Health Awareness"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                    ></iframe>
+                    <img 
+                        src="https://images.unsplash.com/photo-1493836512294-502baa1986e2?auto=format&fit=crop&q=80&w=1000" 
+                        alt="Mental Health"
+                        class="w-full aspect-video object-cover rounded-lg"
+                    />
+                </div>
+                <div class="bg-gray-50 rounded-xl p-6">
+                    <h3 class="text-xl font-semibold mb-4">Nutrition Guidelines</h3>
+                    <p class="text-gray-600 mb-4">Essential information about maintaining a balanced diet.</p>
+                    <iframe
+                        class="w-full aspect-video rounded-lg mb-4"
+                        src="https://www.youtube.com/embed/fqhYBTg73fw"
+                        title="Nutrition Guidelines"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                    ></iframe>
+                    <img 
+                        src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=1000" 
+                        alt="Nutrition"
+                        class="w-full aspect-video object-cover rounded-lg"
+                    />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Feature data
+        const features = [
+            { 
+                icon: 'flask-round', 
+                title: "Lab Results", 
+                color: "emerald",
+                content: {
+                    image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&q=80&w=1000",
+                    title: "Blood Test Results",
+                    description: "Complete Blood Count (CBC)",
+                    details: [
+                        "Red Blood Cells: 4.5-5.5 million/mcL",
+                        "White Blood Cells: 4,500-11,000/mcL",
+                        "Hemoglobin: 14-17 g/dL",
+                        "Platelets: 150,000-450,000/mcL"
+                    ]
+                }
+            },
+            { 
+                icon: 'activity', 
+                title: "Symptom Tracking", 
+                color: "green",
+                content: {
+                    image: "https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?auto=format&fit=crop&q=80&w=1000",
+                    title: "Daily Symptoms Log",
+                    description: "Track your symptoms over time",
+                    details: [
+                        "Headache intensity: 2/10",
+                        "Fatigue level: Mild",
+                        "Sleep quality: Good",
+                        "Mood: Stable"
+                    ]
+                }
+            },
+            { 
+                icon: 'pill', 
+                title: "Medications", 
+                color: "blue",
+                content: {
+                    image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&q=80&w=1000",
+                    title: "Medication Schedule",
+                    description: "Daily Medication Tracker",
+                    details: [
+                        "Morning: Vitamin D (1000 IU)",
+                        "Afternoon: Omega-3 (1000mg)",
+                        "Evening: Multivitamin",
+                        "Before bed: Calcium (500mg)"
+                    ]
+                }
+            },
+            { 
+                icon: 'droplet', 
+                title: "Cycle Tracking", 
+                color: "rose",
+                content: {
+                    image: "https://images.unsplash.com/photo-1584362917165-526a968579e8?auto=format&fit=crop&q=80&w=1000",
+                    title: "Menstrual Cycle Tracker",
+                    description: "28-Day Cycle Overview",
+                    details: [
+                        "Current phase: Follicular",
+                        "Cycle day: 7",
+                        "Next period in: 21 days",
+                        "Last period: 7 days ago"
+                    ]
+                }
+            },
+            { 
+                icon: 'scan', 
+                title: "MRIs, X-RAYs, and CT-scans", 
+                color: "gray",
+                content: {
+                    image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?auto=format&fit=crop&q=80&w=1000",
+                    title: "CT BRAIN W/O - HEAD ST W/O",
+                    description: "Computed Tomography Scan",
+                    details: [
+                        "Body Part: HEAD",
+                        "Modality: Computed Tomography",
+                        "Slice: 1/32",
+                        "Date: 2024-03-15"
+                    ]
+                }
+            },
+            { 
+                icon: 'clipboard-list', 
+                title: "Doctor Notes", 
+                color: "slate",
+                content: {
+                    image: "https://images.unsplash.com/photo-1512678080530-7760d81faba6?auto=format&fit=crop&q=80&w=1000",
+                    title: "Recent Consultation Notes",
+                    description: "General Check-up Summary",
+                    details: [
+                        "Blood pressure: 120/80 mmHg",
+                        "Heart rate: 72 bpm",
+                        "Weight: 70 kg",
+                        "Next appointment: In 3 months"
+                    ]
+                }
+            },
+            { 
+                icon: 'gauge', 
+                title: "Device Metrics", 
+                color: "pink",
+                content: {
+                    image: "https://images.unsplash.com/photo-1557825835-70d97c4aa567?auto=format&fit=crop&q=80&w=1000",
+                    title: "Health Device Statistics",
+                    description: "Daily Health Metrics",
+                    details: [
+                        "Steps: 8,547",
+                        "Active minutes: 45",
+                        "Sleep score: 85%",
+                        "Heart rate avg: 68 bpm"
+                    ]
+                }
+            },
+            { 
+                icon: 'star', 
+                title: "Emergency Info", 
+                color: "red",
+                content: {
+                    image: "https://images.unsplash.com/photo-1587746746689-c6d6c68db333?auto=format&fit=crop&q=80&w=1000",
+                    title: "Emergency Contact Information",
+                    description: "Quick Access Emergency Details",
+                    details: [
+                        "Blood type: O+",
+                        "Allergies: Penicillin",
+                        "Emergency contact: (555) 123-4567",
+                        "Primary physician: Dr. Smith"
+                    ]
+                }
+            }
+        ];
+
+        // Function to update phone display
+        function updatePhoneDisplay(feature) {
+            document.getElementById('activeFeatureTitle').textContent = feature.title;
+            document.getElementById('featureImage').src = feature.content.image;
+            document.getElementById('featureDescription').textContent = feature.content.description;
+            document.getElementById('featureTitle').textContent = feature.content.title;
+            
+            const detailsContainer = document.getElementById('featureDetails');
+            detailsContainer.innerHTML = feature.content.details
+                .map(detail => `<p class="text-gray-300">${detail}</p>`)
+                .join('');
+        }
+
+        // Create feature buttons
+        const featuresContainer = document.getElementById('features');
+        features.forEach(feature => {
+            const button = document.createElement('div');
+            button.className = `flex items-center gap-4 p-4 rounded-xl bg-${feature.color}-50 hover:bg-${feature.color}-100 transition-all cursor-pointer`;
+            button.innerHTML = `
+                <div class="p-3 rounded-full bg-${feature.color}-100 text-${feature.color}-600">
+                    <i data-lucide="${feature.icon}" class="w-6 h-6"></i>
+                </div>
+                <span class="text-lg font-semibold text-gray-900">${feature.title}</span>
+            `;
+            
+            button.addEventListener('click', () => {
+                // Remove active state from all buttons
+                document.querySelectorAll('#features > div').forEach(btn => {
+                    btn.className = btn.className.replace('shadow-lg', '');
+                });
+                
+                // Add active state to clicked button
+                button.className += ' shadow-lg';
+                
+                // Update phone display
+                updatePhoneDisplay(feature);
+            });
+            
+            featuresContainer.appendChild(button);
+            lucide.createIcons();
+        });
+
+        // Initialize with first feature
+        updatePhoneDisplay(features[0]);
+    </script>
+    <footer class="bg-blue-600 text-white py-10">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-6">
+          <!-- Logo & About -->
+          <div>
+            <h2 class="text-2xl font-bold mb-3">WeCare</h2>
+            <p class="text-gray-200 text-sm">
+              Your trusted healthcare companion for personalized reminders, doctor consultations, and health tracking.
+            </p>
+          </div>
+      
+          <!-- Quick Links -->
+          <div>
+            <h3 class="text-lg font-semibold mb-3">Quick Links</h3>
+            <ul class="space-y-2 text-gray-200">
+              <li><a href="#" class="hover:text-gray-100">Find a Doctor</a></li>
+              <li><a href="#" class="hover:text-gray-100">Our Services</a></li>
+              <li><a href="#" class="hover:text-gray-100">Testimonials</a></li>
+              <li><a href="#" class="hover:text-gray-100">Contact Us</a></li>
+            </ul>
+          </div>
+      
+          <!-- Contact Information -->
+          <div>
+            <h3 class="text-lg font-semibold mb-3">Contact Us</h3>
+            <p class="text-gray-200 text-sm">
+              <i class="fas fa-map-marker-alt mr-2"></i>123 Healthcare Street, City, Country
+            </p>
+            <p class="text-gray-200 text-sm">
+              <i class="fas fa-phone-alt mr-2"></i>+123 456 7890
+            </p>
+            <p class="text-gray-200 text-sm">
+              <i class="fas fa-envelope mr-2"></i>support@wecare.com
+            </p>
+          </div>
+      
+          <!-- Map Block -->
+          <div>
+            <h3 class="text-lg font-semibold mb-3">Hospitals Near You</h3>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59635.22248083674!2d74.73369806204578!3d20.904215162566718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bdec5f2c571bb47%3A0x5827ae11b9d7cb1c!2sDhule%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1739528128890!5m2!1sen!2sin" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      
+        <!-- Bottom Copyright -->
+        <div class="mt-6 border-t border-blue-400 text-center pt-4 text-gray-200 text-sm">
+          &copy; 2025 WeCare. All Rights Reserved.
+        </div>
+      </footer>
+</body>
+</html>

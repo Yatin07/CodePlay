@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   MEDICATION HISTORY
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+ </head>
+ <body class="bg-gray-100">
+  <div class="p-4">
+   <div class="flex items-center mb-4">
+    <button class="text-gray-500">
+     <i class="fas fa-arrow-left">
+     </i>
+     Back
+    </button>
+    <h1 class="ml-4 text-xl font-semibold">
+     MEDICATION HISTORY
+    </h1>
+   </div>
+   <div class="flex">
+    <!-- Sidebar -->
+    <div class="w-1/4 bg-teal-400 p-4 rounded-lg shadow-md">
+     <div class="mb-4">
+      <div class="flex space-x-2">
+       <div class=" text-white flex items-center justify-center">
+       </div>
+      </div>
+     </div>
+     <div class="mb-4">
+      <h2 class="text-lg font-semibold mb-2">
+       Filters
+      </h2>
+      <div class="mb-2">
+       <input class="mr-2" id="favorites" type="checkbox"/>
+       <label for="favorites">
+        Favorites
+       </label>
+      </div>
+      <div class="mb-2">
+       <input checked="" class="mr-2" id="assigned" type="checkbox"/>
+       <label for="assigned">
+        Assigned to me
+       </label>
+      </div>
+     </div>
+     <div class="mb-4">
+      <label class="block text-sm font-medium text-gray-700" for="name">
+       Name
+      </label>
+      <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md" id="name" placeholder="Enter patient name" type="text"/>
+     </div>
+     <div class="mb-4">
+      <label class="block text-sm font-medium text-gray-700" for="age">
+       AGE
+      </label>
+      <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md" id="mrn" placeholder="Enter patient AGE" type="text"/>
+     </div>
+     <div class="mb-4">
+      <label class="block text-sm font-medium text-gray-700" for="dob">
+       Date of Birth
+      </label>
+      <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md" id="dob" placeholder="mm/dd/yyyy" type="text"/>
+     </div>
+     <div class="mb-4">
+      <label class="block text-sm font-medium text-gray-700" for="phone">
+       Phone Number
+      </label>
+      <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md" id="phone" placeholder="(000) 0000 000" type="text"/>
+     </div>
+     <div class="mb-4">
+      <label class="block text-sm font-medium text-gray-700" for="address">
+       Address
+      </label>
+      <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md" id="address" placeholder="Enter City/Zip Code" type="text"/>
+     </div>
+     <div class="flex justify-between">
+      <button class="text-black">
+       View More
+      </button>
+      <button class="bg-white text-black px-4 py-2 rounded-md">
+       Apply
+      </button>
+     </div>
+    </div>
+    <!-- Main Content -->
+    <div class="w-3/4 ml-4 bg-white p-4 rounded-lg shadow-md">
+     <table class="min-w-full divide-y divide-teal-300">
+      <thead class="bg-gray-50">
+       <tr>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+         Name
+        </th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+         Action
+        </th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+         Status
+        </th>
+       </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+       <tr>
+        
+        <td class="px-6 py-4 whitespace-nowrap">
+         <div class="flex items-center">
+          <div>
+           <div class="text-sm font-medium text-gray-900">
+            J. Williams
+           </div>
+           <div class="text-sm text-gray-500">
+            02/02/1970 (51 y.o) Male - Transgender
+           </div>
+          </div>
+         </div>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+            <select id="actionSelect">
+                <option value="attend">Attend</option>
+                <option value="notAttend">Not Attend</option>
+            </select>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+            <select id="actionSelect">
+                <option value="Booked">Booked</option>
+                <option value="Not Booked">Not Booked</option>
+            </select>
+        </td>
+       </tr>
+       <tr>
+        <td class="px-6 py-4 whitespace-nowrap">
+         <div class="flex items-center">
+         <div>
+           <div class="text-sm font-medium text-gray-900">
+            Margaret Sheppard
+           </div>
+           <div class="text-sm text-gray-500">
+            06/21/1990 (34 y.o) Male
+           </div>
+          </div>
+         </div>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+            <select id="actionSelect">
+                <option value="attend">Attend</option>
+                <option value="notAttend">Not Attend</option>
+            </select>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+            <select id="actionSelect">
+                <option value="Booked">Booked</option>
+                <option value="Not Booked">Not Booked</option>
+            </select>
+        </td>
+       </tr>
+       <tr>
+        <td class="px-6 py-4 whitespace-nowrap">
+         <div class="flex items-center">
+          <div>
+           <div class="text-sm font-medium text-gray-900">
+            Luis Caudle
+           </div>
+           <div class="text-sm text-gray-500">
+            02/09/1985 (39 y.o) Male
+           </div>
+          </div>
+         </div>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+            <select id="actionSelect">
+                <option value="attend">Attend</option>
+                <option value="notAttend">Not Attend</option>
+            </select>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+            <select id="actionSelect">
+                <option value="Booked">Booked</option>
+                <option value="Not Booked">Not Booked</option>
+            </select>
+        </td>
+       </tr>
+       <tr>
+        <td class="px-6 py-4 whitespace-nowrap">
+         <div class="flex items-center">
+          <div>
+           <div class="text-sm font-medium text-gray-900">
+            M. Brownlee
+           </div>
+           <div class="text-sm text-gray-500">
+            11/15/1992 (32 y.o) Male
+           </div>
+          </div>
+         </div>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+            <select id="actionSelect">
+                <option value="attend">Attend</option>
+                <option value="notAttend">Not Attend</option>
+            </select>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+            <select id="actionSelect">
+                <option value="Booked">Booked</option>
+                <option value="Not Booked">Not Booked</option>
+            </select>
+        </td>
+       </tr>
+       <tr>
+        <td class="px-6 py-4 whitespace-nowrap">
+         <div class="flex items-center">
+          <div>
+           <div class="text-sm font-medium text-gray-900">
+            Jennie Gardner
+           </div>
+           <div class="text-sm text-gray-500">
+            08/26/1987 (37 y.o) Female
+           </div>
+          </div>
+         </div>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+            <select id="actionSelect">
+                <option value="attend">Attend</option>
+                <option value="notAttend">Not Attend</option>
+            </select>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+            <select id="actionSelect">
+                <option value="Booked">Booked</option>
+                <option value="Not Booked">Not Booked</option>
+            </select>
+        </td>
+       </tr>
+       <tr> 
+        <td class="px-6 py-4 whitespace-nowrap">
+         <div class="flex items-center">
+          <div>
+           <div class="text-sm font-medium text-gray-900">
+            Michael Douglas
+           </div>
+           <div class="text-sm text-gray-500">
+            03/30/1991 (33 y.o) Male
+           </div>
+          </div>
+         </div>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+            <select id="actionSelect">
+                <option value="attend">Attend</option>
+                <option value="notAttend">Not Attend</option>
+            </select>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+            <select id="actionSelect">
+                <option value="Booked">Booked</option>
+                <option value="Not Booked">Not Booked</option>
+            </select>
+        </td>
+       </tr>
+       <tr>
+        <td class="px-6 py-4 whitespace-nowrap">
+         <div class="flex items-center">
+          <div>
+           <div class="text-sm font-medium text-gray-900">
+            M. Jeremiah
+           </div>
+           <div class="text-sm text-gray-500">
+            09/10/1993 (31 y.o) Female
+           </div>
+          </div>
+         </div>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+            <select id="actionSelect">
+                <option value="attend">Attend</option>
+                <option value="notAttend">Not Attend</option>
+            </select>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+            <select id="actionSelect">
+                <option value="Booked">Booked</option>
+                <option value="Not Booked">Not Booked</option>
+            </select>
+        </td>
+       </tr>
+       <tr>
+        <td class="px-6 py-4 whitespace-nowrap">
+         <div class="flex items-center">
+          <div>
+           <div class="text-sm font-medium text-gray-900">
+            Jane Smith
+           </div>
+           <div class="text-sm text-gray-500">
+            06/21/1990 (34 y.o) Male
+           </div>
+          </div>
+         </div>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+            <select id="actionSelect">
+                <option value="attend">Attend</option>
+                <option value="notAttend">Not Attend</option>
+            </select>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+            <select id="actionSelect">
+                <option value="Booked">Booked</option>
+                <option value="Not Booked">Not Booked</option>
+            </select>
+        </td>
+       </tr>
+       <tr>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

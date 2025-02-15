@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Healthcare Event Calendar</title>
+  <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
+  <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@5.11.3/main.global.min.js'></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 20px;
+      text-align: center;
+    }
+    h2 {
+      color: #2c3e50;
+    }
+    #calendar {
+      max-width: 900px;
+      margin: 20px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      text-align: left;
+      width: 300px;
+    }
+    .modal h3 {
+      margin-bottom: 10px;
+      color: #34495e;
+    }
+    .modal input {
+      display: block;
+      width: 100%;
+      padding: 8px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .modal button {
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+    }
+    .modal button:hover {
+      background-color: #1a252f;
+    }
+    .modal .cancel {
+      background-color: #e74c3c;
+    }
+    .modal .cancel:hover {
+      background-color: #c0392b;
+    }
+  </style>
+</head>
+<body>
+  <div class="flex items-center mb-4">
+    <a href="dash combine.html">
+      <button class="text-gray-500">
+        <i class="fas fa-arrow-left"></i> Back
+      </button>
+    </a>
+  </div>
+  <h2>Healthcare Event Calendar</h2>
+  <div id='calendar'></div>
+
+  <div id="eventModal" class="modal">
+    <h3>Add Event</h3>
+    <input type="text" id="eventTitle" placeholder="Event Title" />
+    <button onclick="addEvent()">Save</button>
+    <button class="cancel" onclick="closeModal()">Cancel</button>
+  </div>
+
+  <script>
+    let selectedDate;
+    
+    // Function to update localStorage with current calendar events
+    function updateLocalStorage() {
+      let events = window.calendar.getEvents().map(event => ({
+        title: event.title,
+        start: event.startStr
+      }));
+      localStorage.setItem('storedEvents', JSON.stringify(events));
+    }
+    
+    document.addEventListener('DOMContentLoaded', function () {
+      let calendarEl = document.getElementById('calendar');
+      let calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        selectable: true,
+        editable: true,
+        eventClick: function (info) {
+          if (confirm("Delete this event?")) {
+            info.event.remove();
+            updateLocalStorage(); // Update storage after deletion
+          }
+        },
+        select: function (info) {
+          selectedDate = info.startStr;
+          openModal();
+        }
+      });
+      
+      // Load events from localStorage
+      let storedEvents = localStorage.getItem('storedEvents');
+      if (storedEvents) {
+        let events = JSON.parse(storedEvents);
+        events.forEach(event => {
+          calendar.addEvent(event);
+        });
+      }
+      
+      calendar.render();
+      window.calendar = calendar; // Make calendar globally accessible
+    });
+
+    function openModal() {
+      document.getElementById('eventModal').style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById('eventModal').style.display = 'none';
+      document.getElementById('eventTitle').value = '';
+    }
+
+    function addEvent() {
+      let title = document.getElementById('eventTitle').value;
+      if (title) {
+        window.calendar.addEvent({ title: title, start: selectedDate });
+        updateLocalStorage(); // Save the new event
+        closeModal();
+      }
+    }
+  </script>
+</body>
+</html>

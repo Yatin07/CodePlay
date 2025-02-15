@@ -1,0 +1,596 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Dashboard
+  </title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Roboto', sans-serif;
+        }
+  </style>
+ </head>
+ <body class="bg-gray-100">
+  <div class="flex">
+   <!-- Sidebar -->
+   <div class="w-64 bg-white h-screen shadow-md">
+    <div class="p-4 flex items-center">
+     <img alt="eCareMD Logo" class="mr-2" height="40" src="https://e7.pngegg.com/pngimages/682/485/png-clipart-health-care-medicine-career-health-administration-health-symmetry-medicine.png" width="40"/>
+     <span class="text-xl font-bold text-teal-600">
+      Healthcare
+      <span class="text-gray-800">
+       Dash
+      </span>
+     </span>
+    </div>
+    <nav class="mt-6">
+     <a class="flex items-center p-4 text-teal-600 bg-teal-100" href="#">
+      <i class="fas fa-tachometer-alt mr-3">
+      </i>
+      Dashboard
+     </a>
+     <a class="flex items-center p-4 text-teal-600 hover:bg-green-100" href="#">
+      <i class="fas fa-user-friends mr-3">
+      </i>
+      Patients
+     </a>
+     <a class="flex items-center p-4 text-gray-600 hover:bg-gray-100" href="#">
+      <i class="fas fa-file-invoice-dollar mr-3">
+      </i>
+      Billing &amp; Claims
+     </a>
+     <a class="flex items-center p-4 text-gray-600 hover:bg-gray-100" href="#">
+      <i class="fas fa-chart-line mr-3">
+      </i>
+      Analytics
+     </a>
+     <a class="flex items-center p-4 text-gray-600 hover:bg-gray-100" href="#">
+      <i class="fas fa-calendar-alt mr-3">
+      </i>
+      Call Scheduler
+     </a>
+     <a class="flex items-center p-4 text-gray-600 hover:bg-gray-100" href="#">
+      <i class="fas fa-envelope mr-3">
+      </i>
+      Message
+      <span class="ml-auto bg-teal-600 text-white text-xs font-semibold px-2 py-1 rounded-full">
+       8
+      </span>
+     </a>
+     <a class="flex items-center p-4 text-gray-600 hover:bg-gray-100" href="#">
+      <i class="fas fa-bell mr-3">
+      </i>
+      Alerts
+      <span class="ml-auto bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded-full">
+       5
+      </span>
+     </a>
+     <a class="flex items-center p-4 text-gray-600 hover:bg-gray-100" href="#">
+      <i class="fas fa-tasks mr-3">
+      </i>
+      Task
+     </a>
+     <a class="flex items-center p-4 text-gray-600 hover:bg-gray-100" href="#">
+      <i class="fas fa-book mr-3">
+      </i>
+      Education
+     </a>
+     <a class="flex items-center p-4 text-gray-600 hover:bg-gray-100" href="#">
+      <i class="fas fa-book-open mr-3">
+      </i>
+      Library
+     </a>
+     <a class="flex items-center p-4 text-gray-600 hover:bg-gray-100" href="#">
+      <i class="fas fa-cog mr-3">
+      </i>
+      Settings
+     </a>
+     <a class="flex items-center p-4 text-gray-600 hover:bg-gray-100" href="#">
+      <i class="fas fa-sign-out-alt mr-3">
+      </i>
+      Logout
+     </a>
+    </nav>
+    <div class="p-4 flex items-center mt-auto">
+     <img alt="User Profile Picture" class="rounded-full mr-2" height="40" src="https://st.depositphotos.com/1000824/4633/i/450/depositphotos_46337269-stock-photo-beautiful-young-blonde-woman.jpg" width="40"/>
+     <div>
+      <p class="text-gray-800 font-medium">
+       ANUSHKA RAGHUWANSHI
+      </p>
+      <p class="text-gray-500 text-sm">
+       Provider
+      </p>
+     </div>
+    </div>
+   </div>
+   <!-- Main Content -->
+   <div class="flex-1 p-6">
+    <div class="flex justify-between items-center mb-6">
+     <h1 class="text-2xl font-bold text-gray-800">
+      Dashboard
+     </h1>
+     <div class="flex items-center">
+      <input class="border border-gray-300 rounded-md p-2 mr-4" type="month"/>
+      <button class="bg-teal-600 text-white px-4 py-2 rounded-md" id="newPatientBtn">
+            + New Patients
+      </button>
+     </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+     <div class="bg-teal-400 p-4 rounded-lg shadow-md">
+      <div class="flex items-center">
+       <img alt="Patient Enrolled Icon" class="mr-4" height="40" src="https://static.vecteezy.com/system/resources/previews/007/396/376/non_2x/pay-logo-design-with-line-outline-gradient-colorful-style-concept-of-credit-card-crypto-wallet-fast-online-payment-vector.jpg" width="40"/>
+       <div>
+        <p class="text-white">
+         Patient Enrolled
+        </p>
+        <p class="text-2xl font-bold text-white">
+         550
+        </p>
+        <p class="text-sm text-black">
+         10% Since last month
+        </p>
+       </div>
+      </div>
+     </div>
+     <div class="bg-teal-400 p-4 rounded-lg shadow-md">
+      <div class="flex items-center">
+       <img alt="Non-Complex Icon" class="mr-4" height="40" src="https://img.freepik.com/free-vector/logotype_23-2148144449.jpg" width="40"/>
+       <div>
+        <p class="text-white">
+         Non- Complex
+        </p>
+        <p class="text-2xl font-bold text-white">
+         500
+        </p>
+        <p class="text-sm text-Black">
+         0% Since last month
+        </p>
+       </div>
+      </div>
+     </div>
+     <div class="bg-teal-400 p-4 rounded-lg shadow-md">
+      <div class="flex items-center">
+       <img alt="Complex Icon" class="mr-4" height="40" src="https://www.shutterstock.com/image-photo/global-service-operations-logo-globe-260nw-2579047665.jpg" width="40"/>
+       <div>
+        <p class="text-white">
+         Complex
+        </p>
+        <p class="text-2xl font-bold text-white">
+         50
+        </p>
+        <p class="text-sm text-white">
+         0% Since last month
+        </p>
+       </div>
+      </div>
+     </div>
+     <div class="bg-teal-400 p-4 rounded-lg shadow-md">
+      <div class="flex items-center">
+       <img alt="Compliance Icon" class="mr-4" height="40" src="https://www.v-comply.com/wp-content/uploads/2022/04/Operationalize-Compliance-to-Ensure-360-Visibility-into-Operational-Resilience-01-1.png" width="40"/>
+       <div>
+        <p class="text-white">
+         Compliance
+        </p>
+        <p class="text-2xl font-bold text-white">
+         75%
+        </p>
+        <p class="text-sm text-black">
+         10% Since last month
+        </p>
+       </div>
+      </div>
+     </div>
+     <div class="bg-teal-400 p-4 rounded-lg shadow-md">
+      <div class="flex items-center">
+       <img alt="Improvement Icon" class="mr-4" height="40" src="https://media.istockphoto.com/id/931466866/vector/icon-icons-with-the-concept-of-the-process-of-increasing-sales-the-process-of-economic-growth.jpg?s=612x612&w=0&k=20&c=C0TfWyTyIGIAUCBJ2_LegCX-7Y2tPikHnzUH5IT_mVg=" width="40"/>
+       <div>
+        <p class="text-white">
+         Improvement
+        </p>
+        <p class="text-2xl font-bold text-white">
+         84%
+        </p>
+        <p class="text-sm text-black">
+         25% Since last month
+        </p>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="bg-white p-4 rounded-lg mt-4 mb-4 shadow-md">
+        <canvas id="enrollmentChart" width="400" height="200"></canvas>
+      </div>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+     <div class="bg-teal-400 p-4 rounded-lg shadow-md col-span-2">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">
+       Program
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+       <div class="bg-white p-4 rounded-lg">
+        <p class="text-gray-600">
+         New Enrollments
+        </p>
+        <p class="text-2xl font-bold text-gray-800">
+         200
+        </p>
+       </div>
+       <div class="bg-white p-4 rounded-lg">
+        <p class="text-gray-600">
+         Initial Interview &amp; Care Plan Assigned
+        </p>
+        <p class="text-2xl font-bold text-gray-800">
+         180
+        </p>
+       </div>
+       <div class="bg-white p-4 rounded-lg">
+        <p class="text-gray-600">
+         Devices Supplied
+        </p>
+        <p class="text-2xl font-bold text-gray-800">
+         150
+        </p>
+       </div>
+       <div class="bg-white p-4 rounded-lg">
+        <p class="text-gray-600">
+         Initial 20 Mins Monitoring
+        </p>
+        <p class="text-2xl font-bold text-gray-800">
+         130
+        </p>
+        <p class="text-sm text-gray-500">
+         Eligible for Billing CPT Code 99490
+        </p>
+       </div>
+       <div class="bg-white p-4 rounded-lg">
+        <p class="text-gray-600">
+         Add 20 Mins Monitoring
+        </p>
+        <p class="text-2xl font-bold text-gray-800">
+         100
+        </p>
+        <p class="text-sm text-gray-500">
+         Eligible for Billing CPT Code 99439
+        </p>
+       </div>
+       <div class="bg-white p-4 rounded-lg">
+        <p class="text-gray-600">
+         Initial 30 Mins Monitoring
+        </p>
+        <p class="text-2xl font-bold text-gray-800">
+         50
+        </p>
+        <p class="text-sm text-gray-500">
+         Eligible for Billing CPT Code 99491
+        </p>
+       </div>
+       <div class="bg-white p-4 rounded-lg">
+        <p class="text-gray-600">
+         Add 30 Mins Personal Monitoring
+        </p>
+        <p class="text-2xl font-bold text-gray-800">
+         130
+        </p>
+        <p class="text-sm text-gray-500">
+         Eligible for Billing CPT Code 99437
+        </p>
+       </div>
+       <div class="bg-white p-4 rounded-lg">
+        <p class="text-gray-600">
+         Initial 60 Mins Consultation
+        </p>
+        <p class="text-2xl font-bold text-gray-800">
+         100
+        </p>
+        <p class="text-sm text-gray-500">
+         Eligible for Billing CPT Code 99457
+        </p>
+       </div>
+       <div class="bg-white p-4 rounded-lg">
+        <p class="text-gray-600">
+         Add 60 Mins Consultation
+        </p>
+        <p class="text-2xl font-bold text-gray-800">
+         50
+        </p>
+        <p class="text-sm text-gray-500">
+         Eligible for Billing CPT Code 99459
+        </p>
+       </div>
+      </div>
+     </div>
+     <div class="bg-white p-4 rounded-lg shadow-md">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">
+       Billing
+      </h2>
+      <div class="bg-teal-600 text-white p-4 rounded-lg mb-4">
+       <p class="text-lg">
+        Total Revenue
+       </p>
+       <p class="text-3xl font-bold">
+        $154,873
+       </p>
+      </div>
+      <p class="text-black mb-2 ">
+       Avg Last Month Reimbursement
+      </p>
+      <div class="grid grid-cols-2 gap-4">
+       <div class="bg-teal-400 p-4 rounded-lg">
+        <p class="text-white">
+         $64.02
+        </p>
+        <p class="text-sm text-white">
+         99490
+        </p>
+       </div>
+       <div class="bg-teal-400 p-4 rounded-lg">
+        <p class="text-white">
+         $48.45
+        </p>
+        <p class="text-sm text-white">
+         99439
+        </p>
+       </div>
+       <div class="bg-teal-400 p-4 rounded-lg">
+        <p class="text-white">
+         $86.17
+        </p>
+        <p class="text-sm text-white">
+         99491
+        </p>
+       </div>
+       <div class="bg-teal-400 p-4 rounded-lg">
+        <p class="text-white">
+         $61.25
+        </p>
+        <p class="text-sm text-white">
+         99437
+        </p>
+       </div>
+       <div class="bg-teal-400 p-4 rounded-lg">
+        <p class="text-white">
+         $134.27
+        </p>
+        <p class="text-sm text-white">
+         99487
+        </p>
+       </div>
+       <div class="bg-teal-400 p-4 rounded-lg">
+        <p class="text-white">
+         $70.60
+        </p>
+        <p class="text-sm text-white">
+         99489
+        </p>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="bg-white p-4 rounded-lg shadow-md mb-6">
+     <h2 class="text-xl font-bold text-gray-800 mb-4">
+      Patients List
+     </h2>
+     <table class="w-full text-left">
+      <thead>
+       <tr class="text-gray-600">
+        <th class="py-2">
+         ID
+        </th>
+        <th class="py-2">
+         Patient Name
+        </th>
+        <th class="py-2">
+         Age
+        </th>
+        <th class="py-2">
+         Conditions
+        </th>
+        <th class="py-2">
+         Enrolled Status
+        </th>
+        <th class="py-2">
+         Enrolled Date
+        </th>
+        <th class="py-2">
+         Program
+        </th>
+        <th class="py-2">
+         Provider
+        </th>
+        <th class="py-2">
+         Monthly Mins
+        </th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr class="border-t">
+        <td class="py-2">
+         #P1234
+        </td>
+        <td class="py-2">
+         Alex Smith
+        </td>
+        <td class="py-2">
+         74 years
+        </td>
+        <td class="py-2">
+         Diabetes, Heart Failure, Anxiety State, Smoke
+        </td>
+        <td class="py-2">
+         Enrolled
+        </td>
+        <td class="py-2">
+         29-04-2022
+        </td>
+        <td class="py-2">
+         CCM, PCM
+        </td>
+        <td class="py-2">
+         Adalberto Hope
+        </td>
+        <td class="py-2">
+         30 Mins
+        </td>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+    <div class="bg-teal-200 p-4 rounded-lg shadow-md">
+     <h2 class="text-xl font-bold text-gray-800 mb-4">
+      Today's Tasks
+     </h2>
+     <div class="flex justify-between items-center mb-4">
+      <h3 class="text-lg font-medium text-gray-800">
+       Reach out to patient
+      </h3>
+      <a class="text-teal-600" href="#">
+       View All
+      </a>
+     </div>
+     <div class="space-y-4">
+      <div class="flex items-center">
+       <img alt="Hanna Westervelt" class="rounded-full mr-4" height="40" src="https://storage.googleapis.com/a1aa/image/0H8qYhltF7f28j7zpEOVzezpZNVUp0C5M9D8Wkgl4-A.jpg" width="40"/>
+       <div>
+        <p class="text-gray-800">
+         Hanna Westervelt
+        </p>
+        <p class="text-gray-500 text-sm">
+         Reach out to patient
+        </p>
+       </div>
+      </div>
+      <div class="flex items-center">
+       <img alt="Cooper Franci" class="rounded-full mr-4" height="40" src="https://storage.googleapis.com/a1aa/image/0L3Di5Sv7XTkdcOUXstwPc-F1ah5WFr1MLs4maeuK0Q.jpg" width="40"/>
+       <div>
+        <p class="text-gray-800">
+         Cooper Franci
+        </p>
+        <p class="text-gray-500 text-sm">
+         Review Check- Ins
+        </p>
+       </div>
+      </div>
+      <div class="flex items-center">
+       <img alt="Jocelyn Vetrovs" class="rounded-full mr-4" height="40" src="https://storage.googleapis.com/a1aa/image/xtvs9i_Nu3BqN77jsGCExEh_LnjND1Em-xcIaNx3uek.jpg" width="40"/>
+       <div>
+        <p class="text-gray-800">
+         Jocelyn Vetrovs
+        </p>
+        <p class="text-gray-500 text-sm">
+         Assign new CGM devices
+        </p>
+       </div>
+      </div>
+      <div class="flex items-center">
+       <img alt="Ryan Westervelt" class="rounded-full mr-4" height="40" src="https://storage.googleapis.com/a1aa/image/oSVIeSgrNWFEVH9XJyVZrlH0GCuXwgzprjqE-htfTH8.jpg" width="40"/>
+       <div>
+        <p class="text-gray-800">
+         Ryan Westervelt
+        </p>
+        <p class="text-gray-500 text-sm">
+         Reach out to patient
+        </p>
+       </div>
+      </div>
+      <div class="flex items-center">
+       <img alt="John Rhiel Madsen" class="rounded-full mr-4" height="40" src="https://storage.googleapis.com/a1aa/image/krgsMHIPhXCrEGM8K529hxnEjHfhKZVRIQAFMP41kpU.jpg" width="40"/>
+       <div>
+        <p class="text-gray-800">
+         John Rhiel Madsen
+        </p>
+        <p class="text-gray-500 text-sm">
+         Check Alerts
+        </p>
+       </div>
+      </div>
+      <div class="flex items-center">
+       <img alt="Patient" class="rounded-full mr-4" height="40" src="https://storage.googleapis.com/a1aa/image/GmWCv9zRuLXBzxJFUnqCAo5E5eNsWiw3zwu8JFNwWJY.jpg" width="40"/>
+       <div>
+        <p class="text-gray-800">
+         Patient
+        </p>
+        <p class="text-gray-500 text-sm">
+         Reach out to patient
+        </p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+    // Example: Add functionality to dynamically update the count of enrolled patients
+    const newPatientBtn = document.getElementById('newPatientBtn');
+    const enrolledCount = document.getElementById('enrolledCount');
+    let currentCount = 550;
+  
+    newPatientBtn.addEventListener('click', () => {
+      currentCount++;
+      enrolledCount.textContent = currentCount;
+      alert('New patient added successfully!');
+    });
+  
+    // Chart.js for Enrollment Trend (Bar Chart)
+    const ctx = document.getElementById('enrollmentChart').getContext('2d');
+    const enrollmentChart = new Chart(ctx, {
+      type: 'bar', // Change to 'bar' for rectangular boxes
+      data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+        datasets: [
+          {
+            label: 'Monthly Enrollments',
+            data: [400, 450, 500, 550, 580, 600],
+            backgroundColor: [
+              'rgba(56, 178, 172, 0.8)',
+              'rgba(66, 153, 225, 0.8)',
+              'rgba(237, 100, 166, 0.8)',
+              'rgba(74, 222, 128, 0.8)',
+              'rgba(234, 179, 8, 0.8)',
+              'rgba(224, 36, 36, 0.8)',
+            ],
+            borderColor: [
+              'rgba(56, 178, 172, 1)',
+              'rgba(66, 153, 225, 1)',
+              'rgba(237, 100, 166, 1)',
+              'rgba(74, 222, 128, 1)',
+              'rgba(234, 179, 8, 1)',
+              'rgba(224, 36, 36, 1)',
+            ],
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Monthly Enrollment Data',
+          },
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    });
+  </script>
+ </body>
+</html

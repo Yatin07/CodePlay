@@ -1,0 +1,90 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EHR Hospital Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="ehr.css ">
+</head>
+<body class="bg-gray-100">
+    <header class="bg-purple-700 text-white p-4 flex justify-between items-center" style="margin-left:70px;">
+        <div class="text-lg font-bold">EHR Hospital</div>
+        <button id="menu-button" class="text-2xl focus:outline-none md:hidden">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+    
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar">
+            <!-- Hamburger menu inside the sidebar -->
+            <span class="open-btn" onclick="toggleNav()">&#9776;</span>
+            <a href="index.html"><i class="icon">📖</i><span class="text">Homepage</span></a>
+            <a href="ehr2.html"><i class="icon">🧘</i><span class="text">Appointments</span></a>
+            <a href="ehr.html"><i class="icon">💪</i><span class="text">Doctor</span></a>
+            <a href="dash combine.html"><i class="icon">🖥️</i><span class="text">Dashboard</span></a>
+            
+        </div>
+       
+        <!-- Main Content -->
+        <div class="flex-1 p-6 ml-64 md:ml-0 transition-all duration-300" style="margin-left: 200px;margin-right: 120px;">
+            <div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+                <div class="bg-green-500 text-white p-4 rounded-lg shadow-md hover:shadow-lg transition duration-200">
+                    <div class="flex items-center">
+                        <i class="fas fa-users fa-2x mr-4"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold">Total Patients</h3>
+                            <p class="text-2xl" id="total-patients">1</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-orange-500 text-white p-4 rounded-lg shadow-md hover:shadow-lg transition duration-200">
+                    <div class="flex items-center">
+                        <i class="fas fa-procedures fa-2x mr-4"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold">In Patients</h3>
+                            <p class="text-2xl" id="in-patients">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-blue-500 text-white p-4 rounded-lg shadow-md hover:shadow-lg transition duration-200">
+                    <div class="flex items-center">
+                        <i class="fas fa-user-md fa-2x mr-4"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold">Active Doctors</h3>
+                            <p class="text-2xl" id="active-doctors">1</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-purple-500 text-white p-4 rounded-lg shadow-md hover:shadow-lg transition duration-200">
+                    <div class="flex items-center">
+                        <i class="fas fa-user-nurse fa-2x mr-4"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold">Active Nurses</h3>
+                            <p class="text-2xl" id="active-nurses">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-800 text-white p-4 rounded-lg shadow-md hover:shadow-lg transition duration-200 col-span-2 md:col-span-1">
+                    <div class="flex items-center">
+                        <i class="fas fa-wallet fa-2x mr-4"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold">Account Balance</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-300 text-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition duration-200 col-span-2 md:col-span-1">
+                    <div class="flex items-center">
+                        <i class="fas fa-dollar-sign fa-2x mr-4"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold">Total Earnings</h3>
+                            <p class="text-2xl" id="total-earnings">234.76 ETH</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="ehr.js"></script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Doctor Dashboard
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="ehr.css ">
+ 
+  <style>
+   body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+ 
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+ 
+        /* Doctor Info Card */
+        .doctor-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 5000px;
+            max-width: 800px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+ 
+        /* Patient List Container */
+        #userDiv {
+            width: 80%;
+            max-width: 800px;  /* Same width as doctor-card */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+ 
+        /* Patient Card */
+        .patient-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            margin: 10px 0;
+            transition: transform 0.3s, background-color 0.3s;
+            text-align: center;
+        }
+ 
+        /* Hover Effect */
+        .patient-card:hover {
+            background-color: #f0f0f0;
+            transform: scale(1.02);
+        }
+ 
+        h3 {
+            color: #444;
+            margin-bottom: 8px;
+        }
+ 
+        p {
+            margin: 5px 0;
+            color: #666;
+        }
+        .header {
+    background-color: #6a0dad; /* Purple color */
+    color: white;
+    text-align: left;
+    padding: 15px 20px;
+    padding-left: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+}
+ 
+</style>
+ </head>
+ 
+ <body class="bg-gray-100">
+    <div class="header">
+        EHR Hospital
+    </div>
+  <div class="flex">
+   <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+    <span class="open-btn" onclick="toggleNav()">&#9776;</span>
+    <a href="index.html"><i class="icon">📖</i><span class="text">Homepage</span></a>
+            <a href="ehr2.html"><i class="icon">🧘</i><span class="text">Appointments</span></a>
+            <a href="ehr.html"><i class="icon">💪</i><span class="text">Doctor</span></a>
+            <a href="dash combine.html"><i class="icon">🖥️</i><span class="text">Dashboard</span></a>
+</div>
+ 
+ 
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+    import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js";
+ 
+    // Firebase Configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyARed2AFNECE8c9eaGdCK2UPV0o7IM9qcY",
+        authDomain: "done-001.firebaseapp.com",
+        databaseURL: "https://done-001-default-rtdb.firebaseio.com",
+        projectId: "done-001",
+        storageBucket: "done-001.firebasestorage.app",
+        messagingSenderId: "182309859819",
+        appId: "1:182309859819:web:cc5d5b8d04ef30718b69ae"
+    };
+ 
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase();
+ 
+    // Fetch Doctor Details
+    function GetDoctorDetails() {
+        const dref = ref(db);
+        get(child(dref, 'doctors')).then((snapshot) => {
+            if (snapshot.exists()) {
+                let doctor = snapshot.val();
+                DisplayDoctorInfo(doctor);
+            } else {
+                console.log("No doctor data found!");
+            }
+        }).catch((error) => {
+            console.error("Error fetching doctor data:", error);
+        });
+    }
+ 
+    // Display Doctor Information
+    function DisplayDoctorInfo(doctor) {
+        document.getElementById('doctor-info').innerHTML = `
+            <h2>EHR Hospital</h2>
+            <p><strong>DocID:</strong> ${doctor.id} &nbsp;
+            <strong>Email:</strong> ${doctor.email}</p>
+            <p><strong>Full Name:</strong> ${doctor.name}</p>
+            <p><strong>Date of Joining:</strong> ${doctor.joining_date} &nbsp;
+            <strong>City:</strong> ${doctor.city}</p>
+            <p><strong>Speciality:</strong> ${doctor.speciality} &nbsp; </p>
+        `;
+    }
+ 
+    // Fetch Patients Data
+    function GetPatients() {
+        const dref = ref(db);
+        get(child(dref, 'users')).then((users) => {
+            users.forEach(std => {
+                AddPatientToList(std);
+            });
+        }).catch((error) => {
+            console.error("Error fetching patient data:", error);
+        });
+    }
+ 
+    // Display Each Patient in the List
+    function AddPatientToList(std) {
+        let key = std.key;
+        let value = std.val();
+ 
+        let patientDiv = document.createElement('div');
+        patientDiv.classList.add('patient-card');
+ 
+        let heading = document.createElement('h3');
+        heading.innerHTML = `Patient ${key}`;
+ 
+        let name = document.createElement('p');
+        name.innerHTML = `<strong>Name:</strong> ${value.name}`;
+ 
+        let email = document.createElement('p');
+        email.innerHTML = `<strong>Email:</strong> ${value.email}`;
+ 
+        patientDiv.append(heading, name, email);
+        document.getElementById('userDiv').appendChild(patientDiv);
+    }
+ 
+    // Load Doctor & Patients Data When Page Loads
+    window.addEventListener('load', () => {
+        GetDoctorDetails();
+        GetPatients();
+    });
+</script>
+ 
+<div class="doctor-card">
+    <h2>EHR Hospital</h2>
+    <p><strong>DocID:</strong> [Doctor ID] &nbsp;
+    <strong>Email:</strong> [Email]</p>
+    <p><strong>Full Name:</strong> [Doctor Name]</p>
+    <p><strong>Date of Joining:</strong> [Joining Date] &nbsp;
+    <strong>City:</strong> [City]</p>
+    <p><strong>Speciality:</strong> [Speciality] &nbsp; </p>
+</div>
+    </div>
+  <script src="ehr.js"></script>
+  <h2>Patient List</h2>
+  <div id="userDiv"></div>
+ </body>
+</html>
+ 
+ 

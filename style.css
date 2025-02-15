@@ -1,0 +1,198 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  /* Heading */
+  p {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* Form Styling */
+  form {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 320px;
+  }
+  
+  fieldset {
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* Input Fields */
+  input,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: 0.3s;
+  }
+  
+  /* Input Focus Effect */
+  input:focus,
+  textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+    outline: none;
+  }
+  
+  /* Label Styling */
+  label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 5px;
+  }
+  
+  /* Buttons */
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  /* Hover Effect for Buttons */
+  button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  /* Sign Out Button */
+  #signout_button {
+    top: 20px;
+    background-color: #dc3545;
+  }
+  
+  #signout_button:hover {
+    background-color: #c82333;
+  }
+  
+  /* Schedule Button */
+  button[type="button"] {
+    background-color: #28a745;
+  }
+  
+  button[type="button"]:hover {
+    background-color: #218838;
+  }
+  
+  /* Google API Content Box */
+  #content {
+    background: #fff;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    width: 320px;
+    margin-top: 15px;
+  }
+  #event_list {
+    margin-top: 20px;
+    padding: 10px;
+  }
+  
+  .event-item {
+    background: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .event-item:hover {
+    transform: scale(1.02);
+  }
+  
+  .event-item h3 {
+    margin: 0;
+    color: #333;
+  }
+  
+  .event-item p {
+    margin: 5px 0;
+    color: #555;
+  }
+  
+  .event-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background: #4285F4;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .event-link:hover {
+    background: #357ae8;
+  }
+  
+  .no-events, .error {
+    color: #d9534f;
+    font-weight: bold;
+  }
+  .container {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .form-container {
+    flex: 1;
+  }
+  
+  #event_list {
+    flex: 1;
+    padding: 10px;
+  }
+  
+  .event-item {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .event-item:hover {
+    transform: scale(1.02);
+  }
+  
+  .event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .event-link {
+    background: #4285F4;
+    padding: 5px 10px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .event-link:hover {
+    background: #357ae8;
+  }
+  
