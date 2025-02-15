@@ -1,0 +1,784 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Healthcare Landing Page
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+    
+  </script>
+  <script src="voice.js">
+    </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+      
+   body {
+      font-family: 'Roboto', sans-serif;
+    }
+    svg {
+  overflow: visible;
+}
+.card-container {
+            display: flex;
+            gap: 20px;
+        }
+   
+        .card {
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+   
+        .card:hover {
+            transform: scale(1.1) rotateY(15deg);
+            z-index: 10;
+        }
+   
+        .card-container:hover .card:not(:hover) {
+            filter: blur(3px);
+            transform: scale(0.9);
+        }
+svg path#line {
+  fill: none;
+  stroke: #e00000;
+  stroke-width: 2;
+  stroke-linecap: butt;
+  stroke-linejoin: round;
+  stroke-miterlimit: 4;
+  stroke-dasharray:none;
+  stroke-opacity: 1;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: dash 4s linear infinite;
+}
+svg path#heart {
+  transform-origin: 50% 50%;
+  animation: blink 4s linear infinite;
+}
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 1;
+  }
+  80% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes blink {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  60% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  75% {
+    opacity: 1;
+    transform: scale(1.0);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  85% {
+    opacity: 1;
+    transform: scale(1.0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.0);
+  }
+}
+    .iphone-frame {
+      width: 300px;
+      height: 600px;
+      border: 16px black solid;
+      border-top-width: 60px;
+      border-bottom-width: 80px;
+      border-radius: 100px;
+      position: relative;
+      overflow: hidden;
+      background: white;
+    }
+    .iphone-frame::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      width: 60px;
+      height: 5px;
+      background: #333;
+      border-radius: 100px;
+      transform: translateX(-50%);
+    }
+    .iphone-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .tab:hover {
+      background-color: #e2e8f0;
+    }
+    .heart-rate {
+      width: 150px;
+      height: 73px;
+      position: relative;
+      margin: 0 auto;
+    }
+    .fade-in {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: whitesmoke;
+      top: 0;
+      right: 0;
+      animation: heartRateIn 1.5s linear infinite;
+    }
+    .mobile-frame {
+            width: 300px;
+            height: 600px;
+            border: 16px black solid;
+            border-top: 60px black solid;
+            border-bottom: 60px black solid;
+            border-radius: 36px;
+            position: relative;
+            background-color: white;
+        }
+        .mobile-frame::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 5px;
+            background-color: black;
+            border-radius: 10px;
+        }
+        .mobile-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+        .icon-container:hover img {
+            display: block;
+        }
+        .icon-container img {
+            display: none;
+        }
+        
+    @keyframes heartRateIn {
+      0% {
+        width: 100%;
+      }
+      50% {
+        width: 0;
+      }
+      100% {
+        width: 0;
+      }
+    }
+    /* Custom animation for the sliding effect */
+  @keyframes fadeSlide {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Apply animation to each active carousel item */
+  .carousel-item {
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+  }
+
+  .carousel-item.active img {
+    animation: fadeSlide 1s ease-in-out;
+  }
+  @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .animate-fade-in {
+        animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes eraseAndRewrite {
+            0% { opacity: 1; }
+            40% { opacity: 0; }
+            60% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+    .animate-fade-in {
+        animation: fadeIn 1s ease-in-out;
+    }
+    .hero-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            text-align: center;
+            margin-top: 20px;
+            animation: eraseAndRewrite 3s infinite;
+        }
+  </style>
+ </head>
+ <body class="bg-gray-100">
+    
+  <header class="bg-white shadow-md">
+   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="text-blue-600 text-2xl font-bold" >
+     HealthSphere
+     
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" id="svg5" version="1.1" viewBox="0 0 502.98 108.61" style="height: 40px;padding-right:300px">
+      <path id="heart" d="M213.35 29.43c19.41-15.19 33.68 10.86 37.73 18.82-.28-13.61 11.64-40.98 25.94-34.01 32.3 15.74-15.88 83.8-26.4 81.76-13.24-9-51.35-53.3-37.27-66.57Z" style="fill:#ff9999;stroke:#ff9999;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
+      <path  pathLength="1" id="line" d="M5.32 78.13c.96-.01 5-8.5 5.54-8.54.58-.05 6.1 8.51 7.1 8.51 3.66 0 9.29.06 10.71.05 2.53-.01 4.82-72.88 4.82-72.88l4.76 97.28 3.97-24.45 20.45-.22C64 77.86 77.1 63.66 78.36 63.8c1.31.15 6.68 14.08 7.94 14.07 2.3-.03 33.32.04 35.76.02.96 0 5-8.5 5.53-8.53.59-.05 6.1 8.51 7.1 8.5 3.66 0 9.3.07 10.72.06 2.53-.02 4.81-72.89 4.81-72.89l4.77 97.28 3.97-24.44s83.34-3.33 74.69 7.67c-8.65 11-45.3-42.94-31.65-53.58 25.6-19.96 49.96 36.94 40.26 36.5-12.2-.53 1.8-62.32 23.41-51.7 32.24 15.86-17.56 84.92-26.4 81.77-5.73-2.05-.68-21.68 31.4-26.58 26.65-6.42 29.5 2.35 52.62 7.11 2.53-.02 4.82-72.89 4.82-72.89l4.76 97.28 3.97-24.44 20.45-.22c1.31-.02 14.41-14.22 15.68-14.07 1.32.15 6.7 14.08 7.95 14.07 2.29-.03 33.32.04 35.76.02.95 0 5-8.5 5.53-8.54.58-.04 6.1 8.52 7.1 8.52 3.66 0 9.3.06 10.72.05 2.53-.02 4.81-72.89 4.81-72.89l4.77 97.28 3.97-24.44 20.45-.23c1.31-.01 14.4-14.22 15.68-14.07 1.32.16 6.69 14.09 7.94 14.07" />
+    </svg>
+    <nav class="space-x-8">
+     <a class="text-gray-700 hover:text-blue-600" href="dash combine.html">
+      Doc Dashboard
+     </a>
+     <a class="text-gray-700 hover:text-blue-600" href="edures.html">
+      Educational Resources
+     </a>
+     <a class="text-gray-700 hover:text-blue-600" href="timer.html">
+      Meditate
+     </a>
+    </nav>
+    <a class="bg-blue-600 text-white px-4 py-2 rounded" href="sched.html">
+     Schedule Event
+    </a>
+    <a class="bg-red-600 text-white px-4 py-2 rounded" href="loc.html">
+      EMERGENCY
+     </a>
+   </div>
+  </header>
+  <button id="toggleVoice" class="bg-blue-500 text-white px-4 py-2 rounded m-4">
+    🔊 Voice: ON
+</button>
+  <section class="container mx-auto px-4 py-16">
+   <div class="flex flex-col lg:flex-row items-center">
+    <div class="lg:w-1/2">
+     <h1 class="text-4xl font-bold text-gray-800 mb-4">
+      Your Smart Health Companion 
+     </h1>
+     <strong><h1 style="font-size: 20px;">
+      Stay on Track,Stay Healthy!
+     </h1></strong>
+     
+     <p class="text-gray-600 mb-6">
+      Effortless health management with AI-driven scheduling, smart reminders, and instant support—because your well-being matters!
+     </p>
+     <!-- Buttons below the paragraph -->
+<div class="flex space-x-4">
+  <a href="login.html">
+  <button class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+    Login
+  </button>
+  </a>
+  <a href="login.html">
+  <button class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition duration-300">
+    Sign Up
+  </button>
+</a>
+</div>
+
+
+     <div class="heart-rate mt-6">
+      
+      
+      <div class="fade-in">
+      </div>
+     </div>
+    </div>
+    
+    <div class="lg:w-1/2 mt-8 lg:mt-0 flex justify-center relative">
+     <img alt="Doctor smiling" class="rounded-full" src="https://img.freepik.com/free-vector/doctors-personalized-prescriptive-analytics_335657-1882.jpg"/>
+     <div class="absolute top-0 right-0 bg-blue-100 p-4 rounded-full">
+      <i class="fas fa-heartbeat text-blue-600 text-3xl">
+      </i>
+     </div>
+    </div>
+   </div>
+  </section>
+  <h1 class="hero-text">Never Miss a Step Towards Better Health Because Your Well-being Comes First!</h1>
+  <section class="container mx-auto px-4 py-8">
+   <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="bg-white shadow-md rounded-lg p-6 text-center">
+     <i class="fas fa-stethoscope text-3xl text-pink-600 mb-4">
+     </i>
+     <h3 class="text-xl font-bold text-gray-800 mb-2">
+      Store Your Records
+     </h3>
+     <p class="text-gray-600">
+      Securely save and access your medical history
+     </p>
+    </div>
+    <div class="bg-white shadow-md rounded-lg p-6 text-center">
+     <i class="fas fa-clock text-3xl text-green-600 mb-4">
+     </i>
+     <h3 class="text-xl font-bold text-gray-800 mb-2">
+      24/7 Advanced Care
+     </h3>
+     <p class="text-gray-600">
+      Instant healthcare support,anytime you need it.
+     </p>
+    </div>
+    <div class="bg-white shadow-md rounded-lg p-6 text-center">
+     <i class="fas fa-laptop-medical text-3xl text-blue-600 mb-4">
+     </i>
+     <h3 class="text-xl font-bold text-gray-800 mb-2">
+      Get Result Online
+     </h3>
+     <p class="text-gray-600">
+      View and test reports
+     </p>
+    </div>
+   </div>
+  </section>
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active" style="padding-left:100px; padding-right:100px; border-radius: 30px;">
+          <img src="https://ehr.hellohealth.com/static/ce30c10347a9b040a90f080f8421a34c/f68d8/telehealth_and_rise_virtual_healthcare.jpg" class="d-block mx-auto" alt="..." style="border-radius: 30px; height:400px; max-width:90%;">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Doctors at your doorstep</h5>
+            <p>Easy communication and effective results.</p>
+          </div>
+        </div>
+        <div class="carousel-item" style="padding-left:100px; padding-right:100px; border-radius: 30px;">
+          <img src="https://cdn.dribbble.com/userupload/16274100/file/original-404f4ed319095ecd67ad343b7e690dfa.jpg?resize=752x&vertical=center" class="d-block mx-auto" alt="..." style="border-radius: 30px; height:400px; max-width:90%;">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>All your reports on your dashboard</h5>
+            <p>We ensure your security.</p>
+          </div>
+        </div>
+        <div class="carousel-item" style="padding-left:100px; padding-right:100px; border-radius: 30px;">
+          <img src="https://eco-cdn.iqpc.com/eco/images/channel_content/images/transforming_healthcare_with_ai9ioi87Snj7ZgNpbaUo3q30s91a6yUj2wqpaIUDPw.webp" class="d-block mx-auto" alt="..." style="border-radius: 30px; height:400px; max-width:90%;">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Get AI support anytime anywhere</h5>
+            <p>Fell free to ask without hesitations.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Carousel Controls -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    
+    
+    
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <section class="container mx-auto px-4 py-8">
+    <div class="bg-white shadow-md rounded-lg p-6 flex flex-col lg:flex-row">
+        <div class="lg:w-1/2">
+            <div class="relative">
+                <div id="video-container">
+                    <img id="thumbnail" alt="Dental chair and equipment" class="rounded-lg cursor-pointer w-full"
+                         src="https://www.abbott.in/content/dam/corp/abbott/en-in/homepage/abbott-dont-wait/tiny-tech-for-better-care-960x430.jpg"/>
+                    <button id="play-btn" class="absolute top-4 left-4 bg-red-600 text-white px-4 py-2 rounded-full">
+                        Play Video
+                    </button>
+                </div>
+                <div class="mt-4">
+                    <img src="https://media.bizj.us/view/img/12115866/gettyimages-1280292736-1*1200xx2291-1289-0-10.jpg"
+                         alt="Healthcare professionals"
+                         class="rounded-lg w-full"/>
+                </div>
+            </div>
+        </div>
+        <div class="lg:w-1/2 mt-8 lg:mt-0 lg:pl-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                Why Choose HealthSphere? Your Personalized Health Companion.
+            </h2>
+            <p class="text-gray-600 mb-4">
+                Managing healthcare schedules can be overwhelming, especially for individuals with busy lives or chronic conditions. 
+                <strong>HealthSphere</strong> simplifies this by offering a smart, AI-powered <strong>Personalized Healthcare Reminder System</strong> designed for all age groups.  
+                With seamless <strong>appointment scheduling, medication tracking, and Gamified version</strong>, we ensure you never miss a health check-up or dose.
+            </p>
+            <p class="text-gray-600 mb-4">
+              Maintaining good health is essential for a happy and fulfilling life. A balanced diet, regular exercise, proper hydration, and sufficient sleep play a key role in overall well-being. Preventive healthcare, such as routine check-ups and vaccinations, helps detect and prevent diseases early. Mental health is equally important—managing stress, staying socially connected, and practicing mindfulness contribute to a healthier mind and body. Prioritizing self-care today leads to a stronger, healthier future." 💙🏥
+            </p>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-blue-100 text-center p-4 rounded-lg">
+                    <h3 class="text-2xl font-bold text-blue-600">1000+</h3>
+                    <p class="text-gray-600">Happy Patients</p>
+                </div>
+                <div class="bg-blue-100 text-center p-4 rounded-lg">
+                    <h3 class="text-2xl font-bold text-blue-600">215+</h3>
+                    <p class="text-gray-600">Expert Doctors</p>
+                </div>
+                <div class="bg-blue-100 text-center p-4 rounded-lg">
+                    <h3 class="text-2xl font-bold text-blue-600">315+</h3>
+                    <p class="text-gray-600">Hospital Rooms</p>
+                </div>
+                <div class="bg-blue-100 text-center p-4 rounded-lg">
+                    <h3 class="text-2xl font-bold text-blue-600">106+</h3>
+                    <p class="text-gray-600">Award Winning</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.getElementById("play-btn").addEventListener("click", function() {
+        document.getElementById("video-container").innerHTML = `
+            <iframe class="w-full rounded-lg" height="400" 
+                    src="https://www.youtube.com/embed/jh5U5BnpGN8?autoplay=1" 
+                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+            </iframe>
+        `;
+    });
+</script>
+<script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+<script src="https://files.bpcontent.cloud/2025/02/09/17/20250209172234-9JMWM5XZ.js"></script>
+
+
+ 
+   <html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Healthcare Articles
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+ </head>
+ <body class="bg-gray-100">
+  <div class="container mx-auto p-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Card 1 -->
+          <div class="card bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300">
+              <img alt="Illustration of a doctor with a prescription" class="w-full" height="400" src="https://i.pinimg.com/736x/40/58/af/4058af39065a45768d25d75db9eb78e8.jpg" width="600"/>
+              <div class="p-4">
+                  <h2 class="text-blue-600 font-semibold">Smart Event Scheduling</h2>
+                  <h3 class="text-black font-bold text-xl">Intelligent Event Scheduling System</h3>
+                  <p class="text-gray-600 mt-2">
+                    Our app optimizes appointment booking with real-time availability tracking and automated reminders, eliminating conflicts and enhancing efficiency in healthcare coordination.
+                  </p>
+              </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="card bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300">
+              <img alt="Doctor using a laptop with healthcare icons" class="w-full" height="400" src="https://cdn.prod.website-files.com/64c231f464b91d6bd0303294/667a6d7aaab44974786eef98_2.jpg"/>
+              <div class="p-4">
+                  <h2 class="text-blue-600 font-semibold">AI-Powered Health Chatbot</h2>
+                  <h3 class="text-black font-bold text-xl">AI-Powered Predictive Chatbot</h3>
+                  <p class="text-gray-600 mt-2">
+                    An advanced AI chatbot utilizing machine learning and NLP predicts health concerns, offers real-time assistance, and reduces unnecessary hospital visits through personalized recommendations.
+                  </p>
+              </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="card bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300">
+              <img alt="Illustration of telemedicine communication" class="w-full" height="400" src="https://img.freepik.com/free-vector/medical-prescription-concept-illustration_114360-29561.jpg?semt=ais_hybrid" width="600"/>
+              <div class="p-4">
+                  <h2 class="text-blue-600 font-semibold">Secure Patient Record Management</h2>
+                  <h3 class="text-black font-bold text-xl"> Secure Patient Record Management & Retrieval</h3>
+                  <p class="text-gray-600 mt-2">
+                    A cloud-based system enabling secure viewing and uploading of patient records with encrypted access, ensuring seamless retrieval for precise, informed medical decisions.s
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
+
+  </section>
+  <body class="bg-gray-50 flex flex-col items-center justify-center min-h-screen">
+    <div class="container mx-auto p-4 flex flex-col items-center justify-center">
+     <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-gray-800">
+       Your easy-to-use, secure personal health tracker
+      </h1>
+      <p class="text-lg text-gray-600">
+       Make health tracking easier with our user-friendly design
+      </p>
+     </div>
+     <div class="flex flex-col md:flex-row items-center justify-center">
+      <div class="mb-8 md:mb-0 md:mr-8 relative">
+       <div class="mobile-frame">
+        <img alt="Mobile phone displaying health tracking app interface" height="600" id="mobile-image" src="https://storage.googleapis.com/a1aa/image/yO1q4WOj6n3e80BkZqMHPEewri8zEBBbWVFDiGYlO18.jpg" width="300"/>
+       </div>
+      </div>
+      <div class="space-y-4">
+       <div class="flex items-center space-x-4 icon-container" onmouseover="document.getElementById('mobile-image'). src='https://i.pinimg.com/736x/80/e2/30/80e23036da470ad3e6a082f4f2b10239.jpg'  ">
+        <div class="w-10 h-10 bg-teal-600 rounded-full flex items-center justify-center text-white">
+         <i class="fas fa-calendar-alt">
+         </i>
+        </div>
+        <span class="text-lg text-gray-800">
+         Events Scheduling
+        </span>
+       </div>
+       <div class="flex items-center space-x-4 icon-container" onmouseover="document.getElementById('mobile-image').src='https://www.leadsquared.com/wp-content/uploads/2023/04/Reasons-to-opt-for-a-healthcare-chatbot.png'">
+        <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white">
+         <i class="fas fa-robot">
+         </i>
+        </div>
+        <span class="text-lg text-gray-800">
+         AI Bots
+        </span>
+       </div>
+       <div class="flex items-center space-x-4 icon-container" onmouseover="document.getElementById('mobile-image').src='https://kurve.co.uk/hs-fs/hubfs/What%20is%20App%20Gamification.png?width=960&height=750&name=What%20is%20App%20Gamification.png'">
+        <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white">
+         <i class="fas fa-gamepad">
+         </i>
+        </div>
+        <span class="text-lg text-gray-800">
+         Gamification
+        </span>
+       </div>
+       <div class="flex items-center space-x-4 icon-container" onmouseover="document.getElementById('mobile-image').src='https://www.shutterstock.com/image-vector/3d-speech-bubble-icons-bell-260nw-2432980345.jpg'">
+        <div class="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center text-white">
+         <i class="fas fa-sms">
+         </i>
+        </div>
+        <span class="text-lg text-gray-800">
+         End-to-End SMS Delivery
+        </span>
+       </div>
+       <div class="flex items-center space-x-4 icon-container" onmouseover="document.getElementById('mobile-image').src='https://img.freepik.com/free-vector/online-education-concept_1284-4474.jpg'">
+        <div class="w-10 h-10 bg-gray-600 rounded-full flex items-center justify-center text-white">
+         <i class="fas fa-book">
+         </i>
+        </div>
+        <span class="text-lg text-gray-800">
+         Educational Resources
+        </span>
+       </div>
+       <div class="flex items-center space-x-4 icon-container" onmouseover="document.getElementById('mobile-image').src='https://www.rd.com/wp-content/uploads/2023/02/RD-iPhone-SOS-how-to-FT-GettyImages-1422974767-JVedit.jpg'">
+        <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center text-white">
+         <i class="fas fa-exclamation-triangle">
+         </i>
+        </div>
+        <span class="text-lg text-gray-800">
+         Emergency SOS
+        </span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </body>
+  <script>
+   function changeImage(src) {
+      document.getElementById('phone-image').src = src;
+    }
+  </script>
+  <script>
+    let lastSpokenElement = null;
+    let voiceEnabled = true; // Voice is enabled by default
+
+    document.getElementById("toggleVoice").addEventListener("click", function () {
+        voiceEnabled = !voiceEnabled;
+        this.innerText = voiceEnabled ? "🔊 Voice: ON" : "🔇 Voice: OFF";
+    });
+
+    document.addEventListener("mouseover", function (event) {
+        if (!voiceEnabled) return; // Stop if voice is turned off
+
+        let text = event.target.innerText.trim();
+        if (!text) {
+            text = event.target.getAttribute("aria-label") || event.target.getAttribute("alt") || "";
+        }
+
+        if (text && event.target !== lastSpokenElement) {
+            lastSpokenElement = event.target;
+            speakText(text);
+        }
+    });
+
+    function speakText(text) {
+        let speech = new SpeechSynthesisUtterance(text);
+        speech.lang = "en-US";
+        speech.rate = 1;
+        
+        window.speechSynthesis.cancel(); // Stop ongoing speech
+        window.speechSynthesis.speak(speech);
+    }
+</script>
+<script>
+ function changeImage(src) {
+      document.getElementById('phone-image').src = src;
+    }
+  </script>
+ <section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto">
+      <h1 class="text-3xl font-medium title-font text-gray-900 mb-12 text-center">Testimonials</h1>
+      <div class="flex flex-wrap -m-4">
+          <div class="p-4 md:w-1/2 w-full">
+              <div class="h-full bg-gray-100 p-8 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                       class="block w-5 h-5 text-gray-400 mb-4" viewBox="0 0 975.036 975.036">
+                      <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50z"></path>
+                  </svg>
+                  <p class="leading-relaxed mb-6 animate-fade-in">This healthcare system has made my life much easier. The reminders are a lifesaver, and I love the intuitive interface.</p>
+                  <a class="inline-flex items-center">
+                      <div class="w-12 h-12 bg-blue-600 text-white flex items-center justify-center rounded-full text-lg font-bold shadow-md hover:bg-blue-700">
+                          AK
+                      </div>
+                      <span class="flex-grow flex flex-col pl-4">
+                          <span class="title-font font-medium text-gray-900">Atharva Khairnar</span>
+                          <span class="text-gray-500 text-sm">Frontend Developer</span>
+                      </span>
+                  </a>
+              </div>
+          </div>
+          <div class="p-4 md:w-1/2 w-full">
+              <div class="h-full bg-gray-100 p-8 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                       class="block w-5 h-5 text-gray-400 mb-4" viewBox="0 0 975.036 975.036">
+                      <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50z"></path>
+                  </svg>
+                  <p class="leading-relaxed mb-6 animate-fade-in">The AI-driven health reminders are amazing! It has helped me manage my schedule effortlessly.</p>
+                  <a class="inline-flex items-center">
+                      <div class="w-12 h-12 bg-green-600 text-white flex items-center justify-center rounded-full text-lg font-bold shadow-md hover:bg-green-700">
+                          SD
+                      </div>
+                      <span class="flex-grow flex flex-col pl-4">
+                          <span class="title-font font-medium text-gray-900">Soham Dalal</span>
+                          <span class="text-gray-500 text-sm">Product Designer</span>
+                      </span>
+                  </a>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<h2>🔊 Voice Assistant</h2>
+<button id="voiceButton">Start Voice Assistant</button>
+
+<!-- Load JavaScript at the bottom to ensure DOM is ready -->
+<script src="voicenew.js"></script>
+
+<footer class="bg-blue-600 text-white py-10">
+  <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-6">
+    <!-- Logo & About -->
+    <div>
+      <h2 class="text-2xl font-bold mb-3">WeCare</h2>
+      <p class="text-gray-200 text-sm">
+        Your trusted healthcare companion for personalized reminders, doctor consultations, and health tracking.
+      </p>
+    </div>
+
+    <!-- Quick Links -->
+    <div>
+      <h3 class="text-lg font-semibold mb-3">Quick Links</h3>
+      <ul class="space-y-2 text-gray-200">
+        <li><a href="#" class="hover:text-gray-100">Find a Doctor</a></li>
+        <li><a href="#" class="hover:text-gray-100">Our Services</a></li>
+        <li><a href="#" class="hover:text-gray-100">Testimonials</a></li>
+        <li><a href="#" class="hover:text-gray-100">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact Information -->
+    <div>
+      <h3 class="text-lg font-semibold mb-3">Contact Us</h3>
+      <p class="text-gray-200 text-sm">
+        <i class="fas fa-map-marker-alt mr-2"></i>123 Healthcare Street, City, Country
+      </p>
+      <p class="text-gray-200 text-sm">
+        <i class="fas fa-phone-alt mr-2"></i>+123 456 7890
+      </p>
+      <p class="text-gray-200 text-sm">
+        <i class="fas fa-envelope mr-2"></i>support@wecare.com
+      </p>
+    </div>
+
+    <!-- Map Block -->
+    <div>
+      <h3 class="text-lg font-semibold mb-3">Hospitals Near You</h3>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59635.22248083674!2d74.73369806204578!3d20.904215162566718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bdec5f2c571bb47%3A0x5827ae11b9d7cb1c!2sDhule%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1739528128890!5m2!1sen!2sin" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+
+  <!-- Bottom Copyright -->
+  <div class="mt-6 border-t border-blue-400 text-center pt-4 text-gray-200 text-sm">
+    &copy; 2025 WeCare. All Rights Reserved.
+  </div>
+</footer>
+
+<script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+<script src="https://files.bpcontent.cloud/2025/02/09/17/20250209172234-9JMWM5XZ.js"></script>
+    
+    
+<!-- Typed.js for Animated Text -->
+<script>
+  var options = {
+      strings: ["Stay on Track, Stay Healthy!"],
+      typeSpeed: 80,
+      backSpeed: 40,
+      loop: true
+  };
+  var typed = new Typed(".typed-text", options);
+</script>
+<style>
+  /* Optional: Style the iframe as needed */
+  #videoConsultationFrame {
+    width: 100%;
+    height: 700px; /* Adjust height as needed */
+    border: none;
+  }
+</style>
+<!-- Bootstrap Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+   </html>
